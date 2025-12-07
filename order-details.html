@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details | The Daily Grind</title>
+    <link rel="stylesheet" href="landing-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Raleway:wght@400;500;700&family=Merriweather:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">The Daily Grind</a>
+            <nav>
+                <ul class="nav-links">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li class="dropdown user-menu">
+                        <a href="#" class="user-menu-trigger">
+                            <svg class="profile-icon" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg>
+                            <span>Profile</span> &#9662;
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="landing.html">My Dashboard</a></li>
+                            <li><a href="#" id="logout-button">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="order-details-section">
+                <a href="landing.html" class="back-link">&larr; Back to Dashboard</a>
+                <h1>Order Details</h1>
+                <div id="order-info" class="order-info-card">
+                    <!-- Order details will be populated here by JavaScript -->
+                    <div id="order-actions-container"></div>
+                </div>
+                <div id="order-shipping" class="order-shipping-card">
+                    <h2>Shipping Address</h2>
+                    <div id="shipping-address-content">
+                        <!-- Shipping address will be populated here -->
+                    </div>
+                </div>
+                <div id="order-billing" class="order-billing-card">
+                    <h2>Billing Address</h2>
+                    <div id="billing-address-content">
+                        <!-- Billing address will be populated here -->
+                    </div>
+                </div>
+                <div id="order-items" class="order-items-card">
+                    <h2>Items in this Order</h2>
+                    <ul id="order-items-list">
+                        <!-- Order items will be populated here -->
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer id="contact">
+        <p>&copy; 2025 The Daily Grind. A new standard in coffee excellence.</p>
+        <p>Contact us at <a href="mailto:hello@thedailygrind.com">hello@thedailygrind.com</a></p>
+    </footer>
+
+    <script src="order-details.js"></script>
+
+</body>
+</html>

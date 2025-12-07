@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome | The Daily Grind</title>
+    <link rel="stylesheet" href="landing-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Raleway:wght@400;500;700&family=Merriweather:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">The Daily Grind</a>
+            <nav>
+                <ul class="nav-links">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li class="dropdown user-menu">
+                        <a href="#" class="user-menu-trigger">
+                            <svg class="profile-icon" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg>
+                            <span>Profile</span> &#9662;
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="landing.html" class="active">My Dashboard</a></li>
+                            <li><a href="#" id="logout-button">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="welcome-banner">
+                <h1>Welcome Back, <span id="user-name">User</span>!</h1>
+                <p>Your daily ritual awaits. Manage your subscription or explore our latest offerings.</p>
+            </section>
+    
+            <section class="dashboard-actions">
+                <a href="subscription.html" class="action-card">
+                    <h3>Manage Subscription</h3>
+                    <p>View or modify your delivery schedule and preferences.</p>
+                </a>
+                <a href="products.html" class="action-card">
+                    <h3>Explore Collections</h3>
+                    <p>Discover new single-origin beans and signature blends.</p>
+                </a>
+            </section>
+
+            <section class="my-account">
+                <h2>My Account</h2>
+                <!-- Confirmation Message Placeholder -->
+                <div id="save-confirmation" class="confirmation-message" style="display: none;"></div>
+
+                <div class="account-details">
+                    <p><strong>Name:</strong> <span id="account-name"></span></p>
+                    <p><strong>Email:</strong> <span id="account-email"></span></p>
+                    <a href="#" id="edit-details-button" class="edit-account-link">Edit Details</a>
+                </div>
+
+                <!-- Hidden form for editing details -->
+                <form id="edit-account-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="edit-name">Name:</label>
+                        <input type="text" id="edit-name" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-save">Save Changes</button>
+                        <button type="button" id="cancel-edit-button" class="btn btn-cancel">Cancel</button>
+                    </div>
+                </form>
+
+            </section>
+
+            <section class="my-orders">
+                <h2>My Recent Orders</h2>
+                <div class="orders-container">
+                    <div class="order-search-container">
+                        <input type="text" id="order-search-input" placeholder="Search by Order #...">
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order #</th>
+                                <th>Date</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-tbody"></tbody>
+                    </table>
+                    <p id="no-orders-message" style="display: none;">You have no recent orders.</p>
+                    <div id="pagination-controls" class="pagination-controls" style="display: none;">
+                        <button id="prev-page-btn" class="btn pagination-btn">&larr; Previous</button>
+                        <span id="page-info"></span>
+                        <button id="next-page-btn" class="btn pagination-btn">Next &rarr;</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer id="contact">
+        <p>&copy; 2025 The Daily Grind. A new standard in coffee excellence.</p>
+        <p>Contact us at <a href="mailto:hello@thedailygrind.com">hello@thedailygrind.com</a></p>
+    </footer>
+
+    <script src="landing.js"></script>
+
+</body>
+</html>

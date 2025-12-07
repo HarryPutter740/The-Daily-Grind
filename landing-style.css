@@ -1,0 +1,497 @@
+/* --- VARIABLES (from the main site) --- */
+:root {
+    --color-bg: #F4F1EA; /* Creamy Beige */
+    --color-text: #2C241B; /* Dark Coffee */
+    --color-accent: #a67b5b; /* Golden Brown */
+    --color-white: #FFFFFF;
+    --font-heading: 'Lora', serif;
+    --font-subheading: 'Merriweather', serif;
+    --font-body: 'Raleway', sans-serif;
+    --transition-standard: all 0.4s ease;
+}
+
+/* --- BASE & TYPOGRAPHY --- */
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    margin: 0;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: var(--transition-standard);
+}
+
+/* --- LAYOUT & HEADER/FOOTER --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+header {
+    background: var(--color-text);
+    color: var(--color-bg);
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--color-bg);
+}
+
+nav {
+    display: flex;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+}
+
+.nav-links a {
+    color: var(--color-bg);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-links a:hover {
+    color: var(--color-accent);
+}
+
+.nav-links a.active {
+    color: var(--color-accent);
+}
+
+/* --- DROPDOWN MENU --- */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: -20px;
+    background: var(--color-text);
+    list-style: none;
+    padding: 1rem;
+    border-radius: 4px;
+    min-width: 200px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateY(10px);
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    z-index: 10;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.dropdown-menu li a {
+    padding: 0.5rem 1rem;
+    display: block;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.user-menu .dropdown-menu {
+    left: auto; /* Reset left alignment */
+    right: 0; /* Align to the right */
+}
+
+.user-menu-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.profile-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    transition: var(--transition-standard);
+}
+
+footer {
+    text-align: center;
+    padding: 3rem 0;
+    margin-top: 4rem;
+    border-top: 1px solid #e0dcd1;
+    font-size: 0.9em;
+}
+
+footer a {
+    color: var(--color-accent);
+    font-weight: 500;
+}
+
+/* --- PAGE CONTENT --- */
+main {
+    padding: 4rem 0;
+}
+
+.welcome-banner {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.welcome-banner h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-banner p {
+    font-size: 1.2rem;
+    color: rgba(44, 36, 27, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.dashboard-actions {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.action-card {
+    background: var(--color-white);
+    padding: 2.5rem;
+    flex: 1;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.action-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+/* --- MY ACCOUNT SECTION --- */
+.my-account {
+    background: var(--color-white);
+    max-width: 824px; /* Match the width of the two cards above */
+    margin: 4rem auto 0;
+    padding: 2.5rem;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+    text-align: left;
+}
+
+.my-account h2 {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.account-details p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.account-details p strong {
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.edit-account-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--color-accent);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* --- EDIT ACCOUNT FORM --- */
+#edit-account-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+#edit-account-form label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+#edit-account-form input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+#edit-account-form .form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: var(--transition-standard);
+}
+
+.btn-save {
+    background-color: var(--color-text);
+    color: var(--color-white);
+}
+.btn-save:hover {
+    background-color: #000;
+}
+
+.btn-cancel {
+    background-color: #eee;
+    color: #333;
+}
+.btn-cancel:hover {
+    background-color: #ddd;
+}
+
+/* --- CONFIRMATION MESSAGE --- */
+.confirmation-message {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: #e9f5e9; /* Light green */
+    color: #28a745; /* Green text */
+    border: 1px solid #a3d9a5;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 500;
+    transition: opacity 0.5s;
+    opacity: 0; /* Hidden by default */
+}
+
+.confirmation-message.visible {
+    opacity: 1; /* Visible state */
+}
+
+/* --- MY ORDERS SECTION --- */
+.my-orders {
+    background: var(--color-white);
+    max-width: 824px;
+    margin: 4rem auto 0;
+    padding: 2.5rem;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+}
+
+.my-orders h2 {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.order-search-container {
+    margin-bottom: 1.5rem;
+}
+
+#order-search-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.orders-container table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+}
+
+.orders-container th,
+.orders-container td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.orders-container thead th {
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #888;
+    border-bottom-width: 2px;
+}
+
+.order-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.order-status svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor; /* Icon will inherit the text color from its parent */
+}
+
+.status-shipped { background-color: #e9f5e9; color: #28a745; }
+.status-processing { background-color: #fff8e1; color: #f59e0b; }
+.status-delivered { background-color: #eef2ff; color: #4f46e5; }
+
+#no-orders-message { text-align: center; padding: 2rem; color: #888; }
+
+.order-link {
+    font-weight: 700;
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+/* --- PAGINATION CONTROLS --- */
+.pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+.pagination-btn {
+    background-color: var(--color-text);
+    color: var(--color-white);
+    font-size: 0.9rem;
+}
+
+.pagination-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#page-info { font-weight: 500; font-size: 0.9rem; color: #555; }
+
+/* --- ORDER DETAILS PAGE --- */
+.order-details-section {
+    max-width: 824px;
+    margin: 0 auto;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 2rem;
+    font-weight: 500;
+    color: var(--color-accent);
+}
+
+.order-details-section h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.order-info-card, .order-items-card, .order-shipping-card, .order-billing-card {
+    background: var(--color-white);
+    padding: 2.5rem;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+}
+
+.order-info-card p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+#order-actions-container {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+.btn-track {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    font-weight: 700;
+}
+
+.order-shipping-card h2, .order-billing-card h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+}
+
+#shipping-address-content p, #billing-address-content p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+.order-items-card h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+}
+
+.order-items-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.order-items-card li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+.order-items-card li:last-child { border-bottom: none; }
+.item-name { font-weight: 500; }
+.item-price { color: #555; }

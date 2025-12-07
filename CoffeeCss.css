@@ -1,0 +1,434 @@
+/* ==========================================================================
+   IMPROVED COFFEE-THEMED AUTHENTICATION PAGE STYLES
+   ========================================================================== */
+
+:root {
+    --primary-color: #6f4e37; /* Coffee Brown */
+    --secondary-color: #f5f5dc; /* Beige */
+    --accent-color: #e8a34c; /* Golden Accent */
+    --text-color: #3d3d3d;
+    --card-bg: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    --font-heading: 'Lora', serif;
+    --font-body: 'Roboto', sans-serif;
+}
+
+/* Global Reset and Body */
+body {
+    font-family: var(--font-body);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Hide scrollbars from the background image */
+}
+
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1511920183353-3c7c95a5742c?q=80&w=1887&auto=format&fit=crop') no-repeat center center/cover;
+    filter: blur(5px) brightness(0.7);
+    transform: scale(1.1);
+}
+
+/* Container for the Card */
+.container {
+    background-color: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 380px;
+    padding: 40px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 1; /* Ensure container is above the background */
+}
+
+/* Status Message for Accessibility (Visually Hidden) */
+.status-message {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+/* Tab Navigation Styling */
+.tabs {
+    display: flex;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 15px 0;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #888;
+    transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+    border-bottom: 3px solid transparent;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.tab-button:hover {
+    color: var(--primary-color);
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.tab-button.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    font-weight: 700;
+    background-color: var(--card-bg); /* Match the card background */
+    border-bottom: 3px solid var(--primary-color);
+}
+
+/* Form Styling */
+.auth-form {
+    transition: opacity 0.4s, transform 0.4s;
+}
+
+.auth-form h2 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #555;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; /* Important for padding/width calculation */
+    font-size: 1em;
+}
+
+/* Password visibility toggle */
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 45px; /* Make space for the icon */
+}
+
+.password-toggle-btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+}
+
+.password-toggle-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Password Strength Indicator */
+.password-strength {
+    display: flex; /* Use flexbox for the bar */
+    height: 8px;
+    background-color: #eee;
+    border-radius: 4px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.password-strength-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #ccc;
+    border-radius: 4px;
+    transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* Footer link inside the form */
+.form-footer {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.form-footer a {
+    color: var(--primary-color);
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+/* Submit Button */
+.submit-button {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px; /* Adjusted margin */
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #8b6b53; /* Darker brown */
+}
+
+/* JavaScript Toggle Classes */
+.hidden-form {
+    display: none; /* The key to hiding the inactive form */
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.active-form {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hidden-icon {
+    display: none;
+}
+
+/* Strength Colors */
+.strength-too-weak .password-strength-bar {
+    width: 25%;
+    background-color: #dc3545; /* Red */
+}
+
+.strength-weak .password-strength-bar {
+    width: 50%;
+    background-color: #ffc107; /* Yellow */
+}
+
+.strength-medium .password-strength-bar {
+    width: 75%;
+    background-color: #17a2b8; /* Blue */
+}
+.strength-strong .password-strength-bar {
+    width: 100%;
+    background-color: #28a745; /* Green */
+}
+
+/* Guest Option Styling */
+.guest-option {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.divider-text {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #aaa;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.divider-text::before,
+.divider-text::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+}
+
+.divider-text:not(:empty)::before {
+    margin-right: .5em;
+}
+
+.divider-text:not(:empty)::after {
+    margin-left: .5em;
+}
+
+.guest-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: text-decoration 0.3s;
+}
+
+.guest-link:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   SOCIAL LOGIN STYLES
+   ========================================================================== */
+
+.social-login {
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    background-color: #fff;
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+}
+
+.google-btn {
+    color: #444;
+}
+
+.google-btn:hover {
+    background-color: #f5f5f5;
+}
+
+.facebook-btn {
+    background-color: #1877F2;
+    color: white;
+    border-color: #1877F2;
+}
+
+.facebook-btn:hover {
+    background-color: #166fe5;
+}
+/* ==========================================================================
+   MODAL STYLES
+   ========================================================================== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay:not(.hidden-modal) {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    width: 380px;
+    max-width: 90%;
+    position: relative;
+    text-align: center;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay:not(.hidden-modal) .modal-content {
+    transform: scale(1);
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s;
+}
+
+.modal-close-button:hover {
+    color: var(--text-color);
+}
+
+.modal-description {
+    font-size: 0.95em;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.modal-status {
+    margin-top: 15px;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.hidden-modal {
+    display: none;
+}
+
+/* ==========================================================================
+   PAGE TRANSITION STYLES
+   ========================================================================== */
+
+#page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary-color, #f5f5dc); /* Beige fallback */
+    z-index: 9999;
+    transition: transform 0.6s cubic-bezier(0.86, 0, 0.07, 1); /* Smoother easing */
+    pointer-events: none; /* Allow clicks through when invisible */
+    transform: translate(0, 0); /* Start on-screen */
+}
+
+#page-transition-overlay.slide-out {
+    transform: translate(100%, 100%); /* Slide out diagonally to the bottom-right */
+}

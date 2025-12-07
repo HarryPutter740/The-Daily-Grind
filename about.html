@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | The Daily Grind</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Raleway:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div id="loader" class="loader-screen">
+        <div class="loader-content">
+            <div class="loader-text">THE DAILY GRIND</div>
+            <div class="loader-line"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="hamburger"><span></span><span></span></div>
+    <div class="mobile-nav">
+        <div class="mobile-nav-close"></div>
+        <ul id="mobile-main-nav" class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li class="has-dropdown">
+                <a href="products.html">Collections</a>
+                <ul class="mobile-dropdown">
+                    <li><a href="products.html#single-origin">Single Origins</a></li>
+                    <li><a href="products.html#blends">Signature Blends</a></li>
+                </ul>
+            </li>
+            <li><a href="subscription.html">Subscription</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Header -->
+    <header class="navbar navbar-solid">
+        <div class="nav-container">
+            <a href="index.html" class="logo">The Daily Grind</a>
+            <nav id="main-nav" class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">Our Story</a>
+                <li class="dropdown">
+                    <a href="products.html">Collections</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="products.html#single-origin">Single Origins</a></li>
+                        <li><a href="products.html#blends">Signature Blends</a></li>
+                    </ul>
+                </li>
+                <a href="subscription.html">Subscription</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header" data-scroll>
+            <div class="container">
+                <h1>The Art of the Bean</h1>
+                <p>Our journey is one of passion, precision, and the pursuit of the perfect cup.</p>
+            </div>
+        </section>
+
+        <!-- Sourcing Section -->
+        <section>
+            <div class="container">
+                <div class="grid-split">
+                    <div class="text-block" data-scroll>
+                        <span class="eyebrow">From Farm to Cup</span>
+                        <h2>Ethical Sourcing, Exceptional Quality</h2>
+                        <p>Our quest begins in the world's most revered coffee-growing regions. We build lasting relationships with farmers who share our commitment to sustainable agriculture and ethical practices. Each bean is hand-selected at peak ripeness, ensuring that only the best of the harvest makes its way to our roastery.</p>
+                    </div>
+                    <div class="image-block reveal-image" data-scroll>
+                        <div class="mask"><img src="https://images.unsplash.com/photo-1505763928422-91e0a2b672a1?q=80&w=1887&auto=format&fit=crop" alt="Hands holding fresh coffee cherries"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roasting Section -->
+        <section class="bg-light">
+            <div class="container">
+                <div class="grid-split reverse">
+                    <div class="text-block" data-scroll>
+                        <span class="eyebrow">The Roaster's Craft</span>
+                        <h2>Unlocking Potential, One Batch at a Time</h2>
+                        <p>Roasting is where science meets soul. In our state-of-the-art facility, our master roasters use their senses and experience to develop the unique flavor profile of each bean. By carefully controlling temperature and time, they transform the raw potential of the green coffee into the nuanced, aromatic, and flavorful experience you enjoy in every cup.</p>
+                    </div>
+                    <div class="image-block reveal-image" data-scroll>
+                        <div class="mask"><img src="https://images.unsplash.com/photo-1545665225-b23b99e4d45e?q=80&w=1887&auto=format&fit=crop" alt="A coffee roaster machine in action"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="brand">The Daily Grind</div>
+            <p class="copyright">&copy; 2025 The Daily Grind. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="nav-handler.js"></script>
+</body>
+</html>
