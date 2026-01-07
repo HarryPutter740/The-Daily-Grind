@@ -2,13 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainNav = document.getElementById('main-nav');
     const mobileNav = document.getElementById('mobile-main-nav');
 
-    const loggedInUserEmail = sessionStorage.getItem('loggedInUser');
+    const loggedInUser = localStorage.getItem('currentUser');
 
-    if (loggedInUserEmail) {
+    if (loggedInUser) {
         // --- User is LOGGED IN ---
 
         // 1. Update Desktop Navigation
-        if (mainNav) {
+        if (mainNav && !document.getElementById('desktop-profile-menu')) {
             const profileLi = document.createElement('li');
             profileLi.className = 'dropdown user-menu';
             const profileTrigger = document.createElement('a');
@@ -30,14 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             document.getElementById('logout-button-main').addEventListener('click', (e) => {
                 e.preventDefault();
-                sessionStorage.removeItem('loggedInUser');
+                localStorage.removeItem('currentUser');
                 alert('You have been logged out.');
-                window.location.href = '../CoffeeIndex.html';
+                window.location.href = 'CoffeeIndex.html';
             });
         }
 
         // 2. Update Mobile Navigation
-        if (mobileNav) {
+        if (mobileNav && !document.getElementById('mobile-profile-menu')) {
             const dashboardLi = document.createElement('li');
             dashboardLi.innerHTML = `<a href="landing.html">My Dashboard</a>`;
             mobileNav.appendChild(dashboardLi);
@@ -48,9 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
             logoutLink.textContent = 'Logout';
             logoutLink.addEventListener('click', (e) => {
                 e.preventDefault();
-                sessionStorage.removeItem('loggedInUser');
+                localStorage.removeItem('currentUser');
                 alert('You have been logged out.');
-                window.location.href = '../CoffeeIndex.html';
+                window.location.href = 'CoffeeIndex.html';
             });
             logoutLi.appendChild(logoutLink);
             mobileNav.appendChild(logoutLi);
@@ -59,16 +59,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- User is a GUEST ---
 
         // 1. Update Desktop Navigation
-        if (mainNav) {
+        if (mainNav && !document.getElementById('desktop-login-btn')) {
             const loginLi = document.createElement('li');
-            loginLi.innerHTML = `<a href="../CoffeeIndex.html" class="nav-login-link">Login</a>`;
+            const activeClass = window.location.pathname.includes('CoffeeIndex.html') ? 'active' : '';
+            loginLi.innerHTML = `<a href="CoffeeIndex.html" class="nav-login-link ${activeClass}">Login</a>`;
             mainNav.appendChild(loginLi);
         }
 
         // 2. Update Mobile Navigation
-        if (mobileNav) {
+        if (mobileNav && !document.getElementById('mobile-login-btn')) {
             const loginLi = document.createElement('li');
-            loginLi.innerHTML = `<a href="../CoffeeIndex.html">Login</a>`;
+            const activeClass = window.location.pathname.includes('CoffeeIndex.html') ? 'class="active"' : '';
+            loginLi.innerHTML = `<a href="CoffeeIndex.html" ${activeClass}>Login</a>`;
             mobileNav.appendChild(loginLi);
         }
     }

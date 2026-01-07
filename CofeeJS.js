@@ -57,56 +57,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Functional Logic for Login & Registration ---
 
-    loginForm.addEventListener('submit', (e) => {
+    loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const email = document.getElementById('login-email').value;
         const password = document.getElementById('login-password').value;
 
-        // Retrieve stored user data from localStorage
-        const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+        try {
+            const response = await fetch('http://localhost:3000/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
 
-        // Find the user with the matching email
-        const user = storedUsers.find(u => u.email === email);
+            const data = await response.json();
 
-        if (!user) {
-            statusMessage.textContent = 'Login failed: No user found with that email.';
-            return;
-        }
-
-        // In a real application, passwords should be hashed and compared securely.
-        // For this simulation, we'll do a simple string comparison.
-        if (user.password === password) {
-            statusMessage.textContent = 'Login successful! Redirecting...';
-            window.location.href = 'landing.html'; // Redirect to the landing page
-        } else {
-            statusMessage.textContent = 'Login failed: Incorrect password.';
+            if (response.ok) {
+                localStorage.setItem('currentUser', JSON.stringify(data.user));
+                statusMessage.textContent = 'Login successful! Redirecting...';
+                window.location.href = 'landing.html';
+            } else {
+                statusMessage.textContent = data.message || 'Login failed.';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            statusMessage.textContent = 'An error occurred connecting to the server.';
         }
     });
 
-    registerForm.addEventListener('submit', (e) => {
+    registerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const name = document.getElementById('register-name').value;
         const email = document.getElementById('register-email').value;
         const password = document.getElementById('register-password').value;
 
-        const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+        try {
+            const response = await fetch('http://localhost:3000/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, password })
+            });
 
-        // Check if user already exists
-        if (storedUsers.some(user => user.email === email)) {
-            statusMessage.textContent = 'Registration failed: A user with this email already exists.';
-            return;
+            const data = await response.json();
+
+            if (response.ok) {
+                statusMessage.textContent = 'Registration successful! Please log in.';
+                registerForm.reset();
+                updatePasswordStrength('');
+                showForm('login-form');
+            } else {
+                statusMessage.textContent = data.message || 'Registration failed.';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            statusMessage.textContent = 'An error occurred connecting to the server.';
         }
-
-        // Add the new user. In a real app, hash the password before storing.
-        storedUsers.push({ name, email, password });
-        localStorage.setItem('users', JSON.stringify(storedUsers));
-
-        statusMessage.textContent = 'Registration successful! Please log in.';
-        registerForm.reset();
-        updatePasswordStrength(''); // Clear strength indicator on successful registration
-        showForm('login-form'); // Switch to the login form
     });
 
     // --- "Forgot Password" Modal Logic ---

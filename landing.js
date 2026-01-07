@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Authentication Guard ---
     // This is the first thing we do. If the user is not logged in, redirect them.
-    const loggedInUserEmail = sessionStorage.getItem('loggedInUser');
-    if (!loggedInUserEmail) {
+    const loggedInUserData = localStorage.getItem('currentUser');
+    if (!loggedInUserData) {
         // Redirect to the login page because no user is in the session.
         // The alert is optional but good for explaining why the redirect is happening.
         alert('You must be logged in to view this page. Redirecting...');
-        window.location.href = '../CoffeeIndex.html';
+        window.location.href = 'CoffeeIndex.html';
         return; // Stop executing the rest of the script
     }
     const userNameSpan = document.getElementById('user-name');
@@ -40,10 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function getLoggedInUser() {
         // This is a simulation. We'll just grab the first user for demonstration.
         // A better implementation would retrieve a specific 'loggedInUser' key.        
-        if (!loggedInUserEmail) return null;
-
-        const allUsers = JSON.parse(localStorage.getItem('users')) || [];
-        return allUsers.find(user => user.email === loggedInUserEmail);
+        if (!loggedInUserData) return null;
+        return JSON.parse(loggedInUserData);
     }
 
     /**
@@ -254,9 +252,9 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault(); // Prevent the link from navigating
 
             // In a real app, you would also clear session tokens from the server.
-            sessionStorage.removeItem('loggedInUser'); // Clear the session
+            localStorage.removeItem('currentUser'); // Clear the session
             alert('You have been logged out.');
-            window.location.href = '../CoffeeIndex.html'; // Redirect to the login page
+            window.location.href = 'CoffeeIndex.html'; // Redirect to the login page
         });
     }
 
@@ -272,6 +270,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (userIndex !== -1) {
             allUsers[userIndex] = { ...allUsers[userIndex], ...updatedDetails };
             localStorage.setItem('users', JSON.stringify(allUsers));
+            // Update the session user as well so the name persists on refresh
+            localStorage.setItem('currentUser', JSON.stringify(allUsers[userIndex]));
         }
     }
 });

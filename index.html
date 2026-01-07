@@ -38,6 +38,14 @@
             </li>
             <li><a href="subscription.html">Subscription</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li id="mobile-login-btn"><a href="CoffeeIndex.html">Login</a></li>
+            <li id="mobile-profile-menu" class="has-dropdown" style="display: none;">
+                <a href="#">Profile</a>
+                <ul class="mobile-dropdown">
+                    <li><a href="landing.html">Dashboard</a></li>
+                    <li><a href="#" class="logout-action">Logout</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 
@@ -57,6 +65,17 @@
                     </li>
                     <li><a href="subscription.html">Subscription</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li id="desktop-login-btn"><a href="CoffeeIndex.html">Login</a></li>
+                    <li id="desktop-profile-menu" class="dropdown" style="display: none;">
+                        <a href="#" style="display: flex; align-items: center; gap: 5px;">
+                            <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg>
+                            Profile
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="landing.html">Dashboard</a></li>
+                            <li><a href="#" class="logout-action">Logout</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -113,17 +132,17 @@
                 <div class="product-grid">
                     <!-- Product Card 1 -->
                     <a href="products.html" class="product-card" data-scroll>
-                        <div class="card-image"><img src="C:\WorkSpace\2nd Year\Projects Web\Udemy\Html Files\The-Daily-Grind\h1" alt="Morning Solstice Blend coffee bag"><div class="hover-overlay"><span>View Blend</span></div></div>
+                        <div class="card-image"><img src="h1.jpg" alt="Morning Solstice Blend coffee bag"><div class="hover-overlay"><span>View Blend</span></div></div>
                         <div class="card-info"><h3>Morning Solstice Blend</h3><p class="notes">Notes of cocoa, toasted almond, and citrus</p><p class="price">$22.00</p></div>
                     </a>
                     <!-- Product Card 2 -->
                     <a href="products.html" class="product-card" data-scroll data-delay="0.1">
-                        <div class="card-image"><img src="https://images.unsplash.com/photo-1621282620992-9507a3a23989?q=80&w=1887&auto=format&fit=crop" alt="Midnight Velvet Roast coffee bag"><div class="hover-overlay"><span>View Blend</span></div></div>
+                        <div class="card-image"><img src="h2.jpg" alt="Midnight Velvet Roast coffee bag"><div class="hover-overlay"><span>View Blend</span></div></div>
                         <div class="card-info"><h3>Midnight Velvet Roast</h3><p class="notes">Notes of dark chocolate, cherry, and spice</p><p class="price">$24.00</p></div>
                     </a>
                     <!-- Product Card 3 -->
                     <a href="products.html" class="product-card" data-scroll data-delay="0.2">
-                        <div class="card-image"><img src="https://images.unsplash.com/photo-1621282621029-996c6f34b8d7?q=80&w=1887&auto=format&fit=crop" alt="Golden Hour Espresso coffee bag"><div class="hover-overlay"><span>View Blend</span></div></div>
+                        <div class="card-image"><img src="h3.jpg" alt="Golden Hour Espresso coffee bag"><div class="hover-overlay"><span>View Blend</span></div></div>
                         <div class="card-info"><h3>Golden Hour Espresso</h3><p class="notes">Notes of caramel, hazelnut, and brown sugar</p><p class="price">$23.00</p></div>
                     </a>
                 </div>
@@ -144,5 +163,28 @@
     <script src="script.js"></script>
     <script src="nav-handler.js"></script>
     <script src="transition.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if user is logged in. 
+            // NOTE: Ensure 'currentUser' matches the key used in your login script (CofeeJS.js)
+            const user = localStorage.getItem('currentUser');
+            
+            if (user) {
+                document.getElementById('mobile-login-btn').style.display = 'none';
+                document.getElementById('desktop-login-btn').style.display = 'none';
+                document.getElementById('mobile-profile-menu').style.display = '';
+                document.getElementById('desktop-profile-menu').style.display = '';
+            }
+
+            // Handle Logout
+            document.querySelectorAll('.logout-action').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('currentUser');
+                    window.location.href = 'index.html';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
